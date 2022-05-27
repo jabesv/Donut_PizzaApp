@@ -14,12 +14,12 @@ let limit = 10
  inputForm.addEventListener('click',function(e){
    
     borough = e.target.innerHTML
- /*   console.log(rowLimit.value)
+    console.log(rowLimit.value)
     console.log(borough)
     if(rowLimit.value === '')  {
         limit=10
     }  
-    else{ limit=rowLimit.value } */
+    else{ limit=rowLimit.value } 
     
     //Clearing the Complaints div befor each choice of borough
     complaints.innerHTML ="" 
