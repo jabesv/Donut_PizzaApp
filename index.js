@@ -30,12 +30,14 @@ let limit = 10
     .then(response => response.json()) //parse the response (res) object to json
     
     .then(allData => 
-   
         //Loop thru the data to get each record to work on
         allData.map((data)=>{
      
         //Creating a div to hold information about each complaint
-            let newdiv = document.createElement('div')
+         let complaintsSubDiv=document.createElement('div')
+         complaints.appendChild(complaintsSubDiv)  
+         //A div to hold descriptor and Button
+           let newdiv = document.createElement('div')
             newdiv.id = "innerdiv"
             let p1 = document.createElement('p')
             p1.innerHTML= data.descriptor
@@ -43,17 +45,19 @@ let limit = 10
             p1.style.height = '50px'
        
             newdiv.appendChild(p1)
-            complaints.appendChild(newdiv)
-
+           complaintsSubDiv.appendChild(newdiv)
+            
             let button1 =document.createElement('button')
             newdiv.appendChild(button1)
+          
             button1.style.width="200px"
             button1.style.height="20px"
             button1.textContent ="What did the police do?"
+            newdiv.appendChild(button1)
         //Creating and listening to the toggle button which displays the resolution   
         
             let descp = document.createElement('p')
-            newdiv.appendChild(descp) 
+            complaintsSubDiv.appendChild(descp) 
             
             button1.addEventListener('click',function() {
             if(descp.innerHTML ===""){
