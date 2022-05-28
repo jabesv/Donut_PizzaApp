@@ -19,7 +19,7 @@ let limit = 10
     if(rowLimit.value === '')  {
         limit=10
     }  
-    else{ limit=rowLimit.value } 
+    else{ limit=rowLimit.value }
     
     //Clearing the Complaints div befor each choice of borough
     complaints.innerHTML ="" 
@@ -34,54 +34,37 @@ let limit = 10
         allData.map((data)=>{
      
         //Creating a div to hold information about each complaint
-         let complaintsSubDiv=document.createElement('div')
-         complaints.appendChild(complaintsSubDiv)  
-         //A div to hold descriptor and Button
+           let complaintsDiv =document.createElement('div')
+           complaintsDiv.id='complaintsDiv'
+           complaints.appendChild(complaintsDiv)
+           
            let newdiv = document.createElement('div')
             newdiv.id = "innerdiv"
             let p1 = document.createElement('p')
             p1.innerHTML= data.descriptor
-            p1.style.width = "400px"
-            p1.style.height = '50px'
-       
+                  
             newdiv.appendChild(p1)
-            complaints.appendChild(newdiv)
-            complaints.style.fontFamily="Trebuchet MS"
-            complaints.style.textAlign="left"
+            
+            
+            let button1 =document.createElement('button')
+            button1.id = "descButton"
+            button1.textContent ="What did the police do?"
+            newdiv.appendChild(button1)
+            complaintsDiv.appendChild(newdiv)
 
-        let button1 = document.createElement('button')
-        newdiv.appendChild(button1)
-        button1.style.width="auto"
-        button1.style.height="30px"
-        button1.style.backgroundColor="#b5282d"
-        button1.style.color="white"
-        button1.style.fontWeight="bold"
-        button1.style.borderRadius="8px"
-        button1.style.padding="5px" 
-        button1.textContent ="WHAT DID THE POLICE DO?"
-
-        button1.addEventListener("mouseenter", function(event) {
-            event.target.style.backgroundColor = "#d6b42d";
-
-        setTimeout(function() {
-            event.target.style.backgroundColor = "#b5282d";
-        }, 500); 
-        }, false);
-
-    //Creating and listening to the toggle button which displays the resolution  
-        
-        let descp = document.createElement('p')
-        newdiv.appendChild(descp) 
-        descp.style.fontFamily="Trebuchet MS"
-
-        let img = document.createElement('img')
+            let img = document.createElement('img')
         newdiv.prepend(img)
         img.src = "https://www.clipartmax.com/png/full/447-4472387_free-png-download-police-siren-clipart-png-photo-png-lies-and-deception.png" 
         img.style.height = "30px"
         img.style.width = "auto"
-        img.style.margin = "10px"
+      
+        //Creating and listening to the toggle button which displays the resolution   
+        
+            let descp = document.createElement('p')
+            descp.id = 'descp'
+            complaintsDiv.appendChild(descp) 
             
-        button1.addEventListener('click',function() {
+            button1.addEventListener('click',function() {
             if(descp.innerHTML ===""){
           
             descp.innerHTML= data.resolution_description
@@ -95,7 +78,8 @@ let limit = 10
 
     }
     ))
- })
-//.then(data => data => allInfo(data)) // json data
+
+
 .catch(err => console.log(err))
 
+})
